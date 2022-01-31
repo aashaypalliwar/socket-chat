@@ -5,13 +5,15 @@
 #include <unistd.h> 
 #include <sys/socket.h> 
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <string.h>
-#include<pthread.h>
+#include <pthread.h>
 #include <semaphore.h> 
 #define PORT 8080
 #define USERNAME_LEN 100
 #define MSG_LEN 512
-#define SERVER_IP "127.0.0.1"
+#define SERVER_IP "192.168.0.103"
+#define CLIENT_IP "192.168.0.108"
 
 char otherUserName[USERNAME_LEN] = {0};
 char myUserName[USERNAME_LEN] = {0};
@@ -84,6 +86,12 @@ int initClientSocket() {
 	} else {
   	printf("Client Socket created successfully.\n");
 	}
+
+  struct sockaddr_in localaddr;
+  localaddr.sin_family = AF_INET;
+  localaddr.sin_addr.s_addr = inet_addr(CLIENT_IP);
+  localaddr.sin_port = 8081;
+  bind(clientSocket, (struct sockaddr *)&localaddr, sizeof(localaddr));
 
   return clientSocket;
 }

@@ -5,12 +5,14 @@
 #include <unistd.h> 
 #include <sys/socket.h> 
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <string.h>
 #include<pthread.h>
 #include <semaphore.h> 
 #define PORT 8080
 #define USERNAME_LEN 100
 #define MSG_LEN 512
+#define SERVER_IP "192.168.0.103"
 
 char otherUserName[USERNAME_LEN] = {0};
 char myUserName[USERNAME_LEN] = {0};
@@ -88,7 +90,7 @@ int initServer() {
   }
 
   server_addr.sin_family = AF_INET;
-  server_addr.sin_addr.s_addr = INADDR_ANY;
+  server_addr.sin_addr.s_addr = inet_addr(SERVER_IP);
   server_addr.sin_port =  htons(PORT);
 
   bindStatus = bind(socket_fd, (struct sockaddr*) & server_addr, sizeof(server_addr)) < 0;
