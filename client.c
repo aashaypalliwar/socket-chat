@@ -13,7 +13,7 @@
 #define USERNAME_LEN 100
 #define MSG_LEN 512
 #define SERVER_IP "192.168.0.103"
-#define CLIENT_IP "192.168.0.108"
+#define CLIENT_IP "192.168.0.105"
 
 char otherUserName[USERNAME_LEN] = {0};
 char myUserName[USERNAME_LEN] = {0};
