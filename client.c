@@ -101,8 +101,8 @@ void exchangeUserNames(char *myUserName, char *otherUserName, int client_fd) {
 	int status;
 
 	struct sockaddr_in server_addr;
-  server_addr.sin_family = inet_addr(SERVER_IP);
-  server_addr.sin_addr.s_addr = INADDR_ANY;
+  server_addr.sin_family = AF_INET;
+  server_addr.sin_addr.s_addr = inet_addr(SERVER_IP);
   server_addr.sin_port =  htons (PORT);
 
 	status = connect(client_fd, (struct sockaddr*)&server_addr, sizeof(server_addr));
