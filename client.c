@@ -11,6 +11,7 @@
 #define PORT 8080
 #define USERNAME_LEN 100
 #define MSG_LEN 512
+#define SERVER_IP "127.0.0.1"
 
 char otherUserName[USERNAME_LEN] = {0};
 char myUserName[USERNAME_LEN] = {0};
@@ -92,7 +93,7 @@ void exchangeUserNames(char *myUserName, char *otherUserName, int client_fd) {
 	int status;
 
 	struct sockaddr_in server_addr;
-  server_addr.sin_family = AF_INET;
+  server_addr.sin_family = inet_addr(SERVER_IP);
   server_addr.sin_addr.s_addr = INADDR_ANY;
   server_addr.sin_port =  htons (PORT);
 
